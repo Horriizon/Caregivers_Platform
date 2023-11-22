@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Signup</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form id="signupForm">
+        <label for="userType">Choose User Type:</label>
+        <select id="userType" name="userType" required>
+            <option value="caregiver">Caregiver</option>
+            <option value="familyMember">Family Member</option>
+        </select>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="mailAddress">Mail Address:</label>
+        <input type="email" id="mailAddress" name="mailAddress" required>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <!-- Additional fields for Family Members -->
+        <div id="familyMemberFields" style="display: none;">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+
+            <label for="personDescription">Person in Need Description:</label>
+            <textarea id="personDescription" name="personDescription" rows="4"></textarea>
+
+            <label for="houseRules">House Rules:</label>
+            <textarea id="houseRules" name="houseRules" rows="4"></textarea>
+        </div>
+
+        <!-- Additional fields for Caregivers -->
+        <div id="caregiverFields" style="display: none;">
+            <label for="caregivingType">Type of Caregiving:</label>
+            <select id="caregivingType" name="caregivingType" required>
+                <option value="babysitter">Babysitter</option>
+                <option value="caregiverForElderly">Caregiver for Elderly</option>
+                <option value="playmateForChildren">Playmate for Children</option>
+            </select>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="photo">Photo URL:</label>
+            <input type="text" id="photo" name="photo" required>
+
+            <label for="pricePerHour">Price Requested per Hour:</label>
+            <input type="number" id="pricePerHour" name="pricePerHour" required>
+
+            <label for="biography">Biography:</label>
+            <textarea id="biography" name="biography" rows="4" required></textarea>
+        </div>
+
+        <button type="button" onclick="registerUser()">Sign Up</button>
+    </form>
+
+    <script>
+        function registerUser() {
+            const userType = document.getElementById('userType').value;
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const mailAddress = document.getElementById('mailAddress').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('password').value;
+            const city = document.getElementById('city').value;
+
+            // Common data for both types
+            const userData = {
+                userType,
+                name,
+                surname,
+                mailAddress,
+                phoneNumber,
+                password,
+                city,
+            };
+
+            // Add fields specific to Family Members or Caregivers
+            if (userType === 'familyMember') {
+                userData.address = document.getElementById('address').value;
+                userData.personDescription = document.getElementById('personDescription').value;
+                userData.houseRules = document.getElementById('houseRules').value;
+            } else if (userType === 'caregiver') {
+                userData.caregivingType = document.getElementById('caregivingType').value;
+                userData.gender = document.getElementById('gender').value;
+                userData.photo = document.getElementById('photo').value;
+                userData.pricePerHour = document.getElementById('pricePerHour').value;
+                userData.biography = document.getElementById('biography').value;
+            }
+
+            // For now, log the data to the console (in a real application, you would send this to a server)
+            console.log(userData);
+
+            // You can add code to send this data to a server for storage and further processing
+            // For example, using fetch() to make a POST request to your backend API
+        }
+
+        // Toggle additional fields based on the selected user type
+        document.getElementById('userType').addEventListener('change', function () {
+            const familyMemberFields = document.getElementById('familyMemberFields');
+            const caregiverFields = document.getElementById('caregiverFields');
+
+            if (this.value === 'familyMember') {
+                familyMemberFields.style.display = 'block';
+                caregiverFields.style.display = 'none';
+            } else if (this.value === 'caregiver') {
+                familyMemberFields.style.display = 'none';
+                caregiverFields.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
