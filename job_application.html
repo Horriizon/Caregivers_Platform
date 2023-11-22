@@ -1,0 +1,25 @@
+<div>
+    <h2>Post a Job Advertisement</h2>
+    <form id="jobAdForm">
+        <label for="age">Person's Age:</label>
+        <input type="text" id="age" name="age" placeholder="Enter age">
+
+        <label for="timeIntervals">Preferred Time Intervals:</label>
+        <input type="text" id="timeIntervals" name="timeIntervals" placeholder="e.g., 09:00-12:00, 12:00-15:00">
+
+        <label for="frequency">Frequency of Caregiving:</label>
+        <input type="text" id="frequency" name="frequency" placeholder="e.g., weekly, daily, weekends only">
+
+        <button type="button" onclick="postJobAd()">Post Advertisement</button>
+    </form>
+</div>
+
+<script>
+    function postJobAd() {
+        const jobAdData = {
+            age: document.getElementById('age').value,
+            timeIntervals: document.getElementById('timeIntervals').value,
+            frequency: document.getElementById('frequency').value,
+        };
+    }
+</script>
