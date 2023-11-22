@@ -9,7 +9,7 @@
      <div class="hero">
         <div class="login_form">
             <h1>Login</h1>
-            <form class="input_box">
+            <form class="input_box" id="loginForm">
                 <input type="text" class="field" placeholder="User Name">
                 <input type="password" class="field" maxlength="10" placeholder="Password">
                 <input type="checkbox" class="check_box"><p>Remember Password</p>
@@ -157,5 +157,15 @@
     text-decoration: none;
 }
 </style>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+        if (!username || !password) {
+            event.preventDefault();
+            alert('Please fill out all fields.'); 
+        }
+    });
+</script>
 </body>
 </html>
