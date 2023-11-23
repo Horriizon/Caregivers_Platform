@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caregiver Registration</title>
+  
+</head>
+<body>
+    <div class="hero">
+        <div class="login_form">
+            <h1>Register</h1>
+            <form class="input_box" id="signupForm">
+                <select id="userType" name="userType" class="field" required>
+                    <option value="caregiver">Caregiver</option>
+                    <option value="familyMember">Family Member</option>
+                </select>  
+                <input type="text" id="name" name="name" class="field" placeholder="Name" required>
+                <input type="text" id="surname" name="surname" class="field" placeholder="Surname" required>
+                <input type="email" id="mailAddress" name="mailAddress" class="field" placeholder="Mail Adress" required>
+                <input type="tel" id="phoneNumber" name="phoneNumber" class="field" placeholder="Phone Number" required>
+                <input type="password" id="password" name="password" class="field" placeholder="Password" maxlength="10" required>
+                <input type="text" id="city" name="city" class="field" placeholder="City" required>
+
+                <div id="familyMemberFields" style="display: none;">
+                    <input type="text" id="address" name="address" class="field" placeholder="Address">
+                    <input type="text" id="personDescription" name="personDescription" class="field" placeholder="Person in Need Description">
+                    <input type="text" id="houseRules" name="houseRules" class="field" placeholder="House Rules">
+                </div>
+                <div id="caregiverFields" style="display: none;">
+                    <input type="text" id="caregivingType" name="caregivingType" class="field" placeholder="Type of Caregivings">
+                    <select id="gender" name="gender" class="field" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" id="photo" name="photo" class="field" placeholder="Photo URL">
+                    <input type="number" id="pricePerHour" name="pricePerHour" class="field" placeholder="Price Requested per Hour">
+                    <textarea id="biography" name="biography" class="field" rows="4" placeholder="Biography" required></textarea>
+                </div>
+                <input type="checkbox" class="check_box"><p>Remember Password</p>
+                <button type="submit"  href="index.html" class="submit_btn" onclick="registerUser()">Register</button>
+            </form> 
+        </div>
+    </div>
+<style>
+ .hero{
+    width: 100%;
+    height: 100vh;
+    background-image: url(images/.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.hero .login_form{
+    width: 400px;
+    height: 700px;
+    background-image: url(images/.png);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
+}
+
+.hero .login_form h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 45px;
+}
+
+.hero .login_form h1::after{
+    content: '';
+    width: 20%;
+    height: 3px;
+    background: #facc22;
+    display: block;
+    position: absolute;
+    margin-top: 60px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.5);
+}
+
+.hero .login_form .input_box{
+    width: 330px;
+    margin: 0 auto;
+}
+
+.hero .login_form .input_box .field{
+    width: 100%;
+    border-bottom: 1px solid #919191;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    outline: none;
+    background: none;
+    font-size: 15px;
+}
+
+.hero .login_form .input_box .check_box{
+    margin: 25px 0;
+    accent-color: #facc22;
+    cursor: pointer;
+}
+
+.hero .login_form .input_box p{
+    position: relative;
+    left: 20px;
+    bottom: 40px;
+    width: 50%;
+    color: #434343;
+}
+
+.hero .login_form .input_box .submit_btn{
+    outline: none;
+    border: none;
+    background: #facc22;
+    padding: 10px 20px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.hero .login_form .social_icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 35px 0;
+}
+
+.hero .login_form .social_icon i{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 5px;
+    line-height: 30px;
+    font-size: 15px;
+    text-align: center;
+    background: #facc22;
+    color: #434343;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.hero .login_form .social_icon i:hover{
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    transform: translateY(-5px);
+}
+
+.hero .login_form .tag{
+    margin: 25px auto 0 auto;
+    width: 150px;
+}
+
+.hero .login_form .tag span{
+    font-size: 15px;
+}
+
+.hero .login_form .tag a{
+    font-size: 15px;
+    margin-left: 5px;
+    color: #d0a404;
+    text-decoration: none;
+}
+
+    </style>
+  <script>
+    function registerUser() {
+        const userType = document.getElementById('userType').value;
+
+        const userData = {
+        };
+
+        console.log("User registered:", userData);
+
+        redirectToIndex();
+    }
+
+    function redirectToIndex() {
+        window.location.href = "index.html"; 
+    }
+
+    document.getElementById('userType').addEventListener('change', function () {
+        const familyMemberFields = document.getElementById('familyMemberFields');
+        const caregiverFields = document.getElementById('caregiverFields');
+
+        if (this.value === 'familyMember') {
+            familyMemberFields.style.display = 'block';
+            caregiverFields.style.display = 'none';
+        } else if (this.value === 'caregiver') {
+            familyMemberFields.style.display = 'none';
+            caregiverFields.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
