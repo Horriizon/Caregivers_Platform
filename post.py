@@ -22,10 +22,11 @@ def index():
 @app.route('/post_job', methods=['GET', 'POST'])
 def post_job():
     if request.method == 'POST':
+        job_id = request.form('job_id')
         member_user_id = request.form['member_user_id']  # Get this value from your authentication system
-        criteria = request.form['criteria']
-        preferred_time_intervals = request.form['preferred_time_intervals']
-        frequency = request.form['frequency']
+        required_caregiving_type = request.form['required_caregiving_type']
+        other_requirements = request.form['other_requirements']
+        date_posted = request.form['date_posted']
 
         Job(job_id, member_user_id, required_caregiving_type, other_requirements, date_posted)
         return redirect(url_for('index'))
