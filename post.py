@@ -27,7 +27,7 @@ def post_job():
         preferred_time_intervals = request.form['preferred_time_intervals']
         frequency = request.form['frequency']
 
-        post_job_advertisement(member_user_id, criteria, preferred_time_intervals, frequency)
+        Job(job_id, member_user_id, required_caregiving_type, other_requirements, date_posted)
         return redirect(url_for('index'))
 
     return render_template('post_job.html')
